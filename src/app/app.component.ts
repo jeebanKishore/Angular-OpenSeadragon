@@ -9,50 +9,18 @@ import openseadragon from 'openseadragon';
 })
 
 export class AppComponent {
-  public canvas: any;
-  public props: any = {
-    canvasFill: '#ffffff',
-    textBackgroundfill: '#ffffff',
-    textTLfill: '#000000',
-    canvasImage: '',
-    id: null,
-    opacity: null,
-    fill: null,
-    fontSize: null,
-    lineHeight: null,
-    charSpacing: null,
-    fontWeight: null,
-    fontStyle: null,
-    textAlign: null,
-    fontFamily: null,
-    TextDecoration: ''
-  };
 
-  public textString: string;
-  public upperTextString: string;
-  public lowerTextString: string;
-  public url = '';
-  public urlBg = '';
-  public size: any = {
-    width: 540,
-    height: 500
-  };
-
-
-  public json: any;
-  public globalEditor = false;
-  public textEditor = false;
-  public imageEditor = false;
-  public figureEditor = false;
-  public selected: any;
+  public imagePath;
+  imgURL: any;
+  public message: string;
+  public OSD: any;
 
   constructor() {}
 
   ngOnInit() {
     // setup front side canvas
     // alert('I am working HAY!');
-
-    const OSD = openseadragon({
+    this.OSD = openseadragon({
       id: 'imgcontainer',
       prefixUrl: '/assets/images/',
       preserveViewport: true,
@@ -70,5 +38,32 @@ export class AppComponent {
       navigatorId: $('#navdiv')[0] ? 'navdiv' : null,
       homeButton: 'homebtn'
   });
+
+  }
+
+
+  preview(files) {
+    if (files.length === 0)
+     {
+       return;
+    }
+
+    const mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = 'Only images are supported.';
+      return;
+    }
+
+    const reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+      this.OSD.open({
+        type: 'image',
+        url: this.imgURL,
+        buildPyramid: false
+    });
+    };
   }
 }

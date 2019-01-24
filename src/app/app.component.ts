@@ -50,7 +50,7 @@ export class AppComponent {
 
   ngOnInit() {
     // setup front side canvas
-    alert('I am working HAY!');
+    // alert('I am working HAY!');
 
     const OSD = openseadragon({
       id: 'imgcontainer',

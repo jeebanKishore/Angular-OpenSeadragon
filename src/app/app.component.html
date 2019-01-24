@@ -1,5 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class='navi' id='navdiv'></div>
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class='navi' id='navdiv'></div>
+        <button id="homebtn" class="navbutton"></button>
+        <button id="zoom1" class="navbutton">1:1</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-toolbar color="secondary">
+    <mat-toolbar-row>
+        <button>Home</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
 <div id='imgcontainer'>
     <div class='panzoom' id='zoomcontainer'>
         <canvas id='maincanvas' style='position:absolute'></canvas>

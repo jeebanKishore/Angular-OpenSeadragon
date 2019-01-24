@@ -70,7 +70,6 @@ export class AppComponent implements AfterViewInit, OnInit {
   this.svg = document.getElementById('svgcanvas') as HTMLCanvasElement;
   this.imgcnv = document.getElementById('imgcanvas') as HTMLCanvasElement;
   this.imgctx = this.imgcnv.getContext('2d');
-  //const srcimg = document.getElementById('srcimg') as HTMLElement;
   }
   ngOnInit() {
     // setup front side canvas
@@ -441,6 +440,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = _event => {
       this.imgURL = reader.result;
+      this.srcimg = reader.result;
       this.OSD.open({
         type: 'image',
         url: this.imgURL,

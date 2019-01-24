@@ -7,9 +7,7 @@ import openseadragon from 'openseadragon';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
-
   public imagePath;
   imgURL: any;
   public message: string;
@@ -25,9 +23,9 @@ export class AppComponent {
       prefixUrl: '/assets/images/',
       preserveViewport: true,
       tileSources: {
-          type: 'image',
-          url: 'assets/1.png',
-          buildPyramid: false
+        type: 'image',
+        url: 'assets/1.png',
+        buildPyramid: false
       },
       homeFillsViewer: false,
       zoomPerClick: 1,
@@ -37,15 +35,16 @@ export class AppComponent {
       showNavigator: $('#navdiv')[0] ? true : false,
       navigatorId: $('#navdiv')[0] ? 'navdiv' : null,
       homeButton: 'homebtn'
-  });
-
+    });
   }
 
-
+  openInput() {
+    // your can use ElementRef for this later
+    document.getElementById('fileInput').click();
+  }
   preview(files) {
-    if (files.length === 0)
-     {
-       return;
+    if (files.length === 0) {
+      return;
     }
 
     const mimeType = files[0].type;
@@ -57,13 +56,25 @@ export class AppComponent {
     const reader = new FileReader();
     this.imagePath = files;
     reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
+    reader.onload = _event => {
       this.imgURL = reader.result;
       this.OSD.open({
         type: 'image',
         url: this.imgURL,
         buildPyramid: false
-    });
+      });
     };
+  }
+
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
   }
 }

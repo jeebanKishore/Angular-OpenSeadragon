@@ -4,11 +4,14 @@
     <mat-toolbar-row>
         <div class='navi' id='navdiv'></div>
         <div class="button-row">
-            <span style="color:red;" *ngIf="message">{{message}}</span>
-            <input #file type="file" accept='image/*' (change)="preview(file.files)" />
-            <img [src]="imgURL" height="200" *ngIf="imgURL">
-            <button mat-raised-button color="accent" id="homebtn" class="navbutton">Reset</button>
-            <button id="zoom1" class="navbutton">1:1</button>
+            <!-- <span style="color:red;" *ngIf="message">{{message}}</span>-->
+            <button mat-raised-button color="accent" (click)="openInput()">
+        Select Image
+      </button>
+            <input hidden id="fileInput" color="accent" #file type="file" accept='image/*' (change)="preview(file.files)" />
+            <button mat-raised-button color="accent" id="homebtn" class="navbutton">Reset View</button>
+            <button mat-raised-button color="accent" id="zoom1" class="navbutton">1:1</button>
+            <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="1" max="100000"></mat-slider>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

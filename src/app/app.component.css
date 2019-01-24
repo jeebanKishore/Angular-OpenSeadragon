@@ -14,10 +14,6 @@
     min-height: 64px!important;
 }
 
-#imgcontainer.mobile {
-    margin-left: 0;
-}
-
 #navdiv {
     position: relative;
     width: 3em;
@@ -26,4 +22,8 @@
 
 .button-row button {
     margin-right: 8px;
+}
+
+mat-slider {
+    width: 300px;
 }
